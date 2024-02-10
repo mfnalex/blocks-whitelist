@@ -1,6 +1,5 @@
 plugins {
     `kotlin-dsl`
-    kotlin("jvm")
 }
 
 repositories {

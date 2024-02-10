@@ -1,10 +1,9 @@
 plugins {
-    kotlin("jvm")
-    id("com.github.johnrengelman.shadow")
+    java
 }
 
 group = "com.jeff-media"
-version = "1.0-SNAPSHOT"
+version = "1.0"
 
 repositories {
     mavenCentral()
@@ -15,15 +14,16 @@ repositories {
 
 dependencies {
     compileOnly(libs.spigot.api)
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
 tasks.test {
     useJUnitPlatform()
 }
 
-kotlin {
-    jvmToolchain(8)
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
 }
 
 tasks.wrapper {
@@ -36,18 +36,9 @@ tasks.processResources {
     }
 }
 
-tasks.shadowJar {
-    archiveClassifier = ""
-    minimize()
-}
-
-tasks.build {
-    dependsOn(tasks.shadowJar)
-}
-
 tasks.register("copyToTestServer", Copy::class) {
     group  = "plugin"
     description = "Copies the plugin to the test server"
-    from(tasks.shadowJar.get().archiveFile)
+    from(tasks.jar.get().archiveFile)
     into(getServerPluginsDirectory())
 }

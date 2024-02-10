@@ -1,11 +1,13 @@
-name: BlocksWhitelist
-main: com.jeff_media.blockswhitelist.BlocksWhitelist
+name: SimpleBlockWhitelist
+main: com.jeff_media.simpleblockwhitelist.SimpleBlockWhitelist
 version: ${version}
 author: mfnalex
-website: https://github.com/mfnalex/blocks-whitelist
+website: https://github.com/mfnalex/simple-block-whitelist
 description: Allows you to whitelist blocks that players can break and place.
 api-version: "1.13"
 commands:
-  blockswhitelist:
-    permission: blockswhitelist.admin
-    description: Reloads the BlocksWhitelist config
+  simpleblockwhitelist:
+    permission: simpleblockwhitelist.admin
+    description: Reloads the SimpleBlockWhitelist config
+#libraries:
+#  - "org.jetbrains.kotlin:kotlin-stdlib:1.9.20"

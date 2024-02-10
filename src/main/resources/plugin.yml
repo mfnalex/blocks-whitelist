@@ -1,6 +1,9 @@
 name: BlocksWhitelist
 main: com.jeff_media.blockswhitelist.BlocksWhitelist
 version: ${version}
+author: mfnalex
+website: https://github.com/mfnalex/blocks-whitelist
+description: Allows you to whitelist blocks that players can break and place.
 api-version: "1.13"
 commands:
   blockswhitelist:

@@ -1,3 +1,8 @@
-name: TestPlugin
-main: com.jeff_media.testplugin.TestPlugin
+name: BlocksWhitelist
+main: com.jeff_media.blockswhitelist.BlocksWhitelist
 version: ${version}
+api-version: "1.13"
+commands:
+  blockswhitelist:
+    permission: blockswhitelist.admin
+    description: Reloads the BlocksWhitelist config

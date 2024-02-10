@@ -38,6 +38,7 @@ tasks.processResources {
 
 tasks.shadowJar {
     archiveClassifier = ""
+    minimize()
 }
 
 tasks.build {

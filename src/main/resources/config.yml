@@ -1,0 +1,12 @@
+# You can reload this config using /blockswhitelist (Permission: blockswhitelist.admin)
+
+# Global whitelist. All players are allowed to break and place these blocks.
+# See here for valid block names: https://www.spigotmc.org/threads/list-of-materials-and-their-data.631970/
+whitelist:
+  - STONE
+
+# You can individually allow players additional block types by giving them the following permission:
+# blocks.<blockname>
+
+# Message to sent when they don't have permission
+noPermission: "&cYou don't have permission to do place or break this block."

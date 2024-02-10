@@ -1,5 +1,8 @@
 package com.jeff_media.blockswhitelist
 
+import net.md_5.bungee.api.ChatMessageType
+import net.md_5.bungee.api.chat.BaseComponent
+import net.md_5.bungee.api.chat.TextComponent
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.command.Command
@@ -18,6 +21,9 @@ class BlocksWhitelist : JavaPlugin(), Listener {
             '&',
             config.getString("noPermission", "You don't have permission to place or break this block")!!
         )
+
+    private val sendTo: String
+        get() = config.getString("sendTo")?.lowercase() ?: "chat"
 
     override fun onEnable() {
         saveDefaultConfig()
@@ -39,7 +45,11 @@ class BlocksWhitelist : JavaPlugin(), Listener {
 
     fun checkAndCancel(player: Player, type: Material, event: Cancellable) {
         if(!isWhitelisted(player, type)) {
-            player.sendMessage(noPermissionMsg)
+            if(sendTo == "chat") {
+                player.sendMessage(noPermissionMsg)
+            } else if(sendTo == "actionbar") {
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(noPermissionMsg))
+            }
             event.isCancelled = true
         }
     }

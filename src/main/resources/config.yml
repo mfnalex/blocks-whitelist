@@ -9,4 +9,4 @@ whitelist:
 # blocks.<blockname>
 
 # Message to sent when they don't have permission
-noPermission: "&cYou don't have permission to do place or break this block."
+noPermission: "&cYou don't have permission to place or break this block."

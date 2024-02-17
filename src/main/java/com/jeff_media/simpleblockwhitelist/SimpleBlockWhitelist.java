@@ -16,6 +16,7 @@ import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,9 +25,16 @@ public class SimpleBlockWhitelist extends JavaPlugin implements Listener {
 
     private final Set<Material> globalWhitelist = new HashSet<>();
 
+    @Nullable
     private String getNoPermissionMsg() {
-        return ChatColor.translateAlternateColorCodes('&', getConfig().getString("noPermission", "You don't have permission to place or break this block"));
+        String message = getConfig().getString("noPermission", "You don't have permission to place or break this block");
+        if(message.isEmpty()) {
+            return null;
+        }
+        return ChatColor.translateAlternateColorCodes('&', message);
     }
+
+
 
     private String getSendTo() {
         return getConfig().getString("sendTo", "chat").toLowerCase();
@@ -79,12 +87,21 @@ public class SimpleBlockWhitelist extends JavaPlugin implements Listener {
         }
 
         if (!isAllowed(player, type)) {
-            if (getSendTo().equals("chat")) {
-                player.sendMessage(getNoPermissionMsg());
-            } else if (getSendTo().equals("actionbar")) {
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(getNoPermissionMsg()));
-            }
+            sendMessage(player);
             event.setCancelled(true);
+        }
+    }
+
+    private void sendMessage(Player player) {
+        String msg = getNoPermissionMsg();
+        if(msg == null) {
+            return;
+        }
+
+        if (getSendTo().equals("chat")) {
+            player.sendMessage(msg);
+        } else if (getSendTo().equals("actionbar")) {
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(msg));
         }
     }
 

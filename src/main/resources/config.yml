@@ -11,6 +11,6 @@ whitelist:
 # When true, OPs can bypass the whitelist
 opsCanBypass: false
 
-# Message to sent when they don't have permission
+# Message to send when they don't have permission - Set to empty string "" to disable
 noPermission: "&cYou don't have permission to place or break this block."
 sendTo: actionbar # chat or actionbar

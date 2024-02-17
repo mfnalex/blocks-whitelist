@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "com.jeff-media"
-version = "1.0"
+version = "1.1"
 
 repositories {
     mavenCentral()
@@ -22,7 +22,10 @@ tasks.test {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
+        languageVersion.set(JavaLanguageVersion.of(17))
+        disableAutoTargetJvm()
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
